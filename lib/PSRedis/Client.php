@@ -2,9 +2,9 @@
 
 namespace PSRedis;
 
-use PSRedis\Client\Adapter\Predis\PredisClientCreator;
+use PSRedis\Client\Adapter\Phpredis\PhpredisClientCreator;
 use PSRedis\Exception\InvalidProperty;
-use PSRedis\Client\Adapter\PredisClientAdapter;
+use PSRedis\Client\Adapter\PhpredisClientAdapter;
 use PSRedis\Client\ClientAdapter;
 use Symfony\Component\Validator\Constraints\Collection;
 use Symfony\Component\Validator\Constraints\Ip;
@@ -45,7 +45,7 @@ class Client
         $this->port = $port;
 
         if (empty($uninitializedClientAdapter)) {
-            $uninitializedClientAdapter = new PredisClientAdapter(new PredisClientCreator(), $connectionType);
+            $uninitializedClientAdapter = new PhpredisClientAdapter(new PhpredisClientCreator(), $connectionType);
         }
         $this->clientAdapter = $this->initializeClientAdapter($uninitializedClientAdapter);
     }
